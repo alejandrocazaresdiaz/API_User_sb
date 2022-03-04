@@ -24,30 +24,24 @@ public class UserController {
         return "It works!";
     }
 
-
-
     @GetMapping("/users")
     public List<User> allUsers(){
         return repository.findAll();
-        //return new ArrayList<User>();
     }
 
     @GetMapping("/user/{name}")
     public List<User> findByName(@PathVariable("name") String name){
         return repository.findByName(name);
-        //return new ArrayList<User>();
     }
 
     @PostMapping ("/user")
     public User createUser(@RequestBody User user){
         return repository.save(user);
-        //return new User();
     }
 
     @PutMapping("/user/{id}")
     public User updateUser(@PathVariable int id, @RequestBody User user){
         return repository.save(user);
-        //return new User();
     }
 
     @DeleteMapping("/user/{id}")

@@ -23,7 +23,7 @@ public class User {
     @Column(name = "username")
     private String userName;
 
-    @CreatedDate
+    @CreatedDate //or @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     public User() {
