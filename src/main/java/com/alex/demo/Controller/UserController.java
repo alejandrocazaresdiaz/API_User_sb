@@ -1,8 +1,5 @@
 package com.alex.demo.Controller;
 
-/*import com.alex.demo.model.User;
-import com.alex.demo.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;*/
 import com.alex.demo.model.User;
 import com.alex.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Controller
@@ -29,12 +27,18 @@ public class UserController {
         return repository.findAll();
     }
 
-    @GetMapping("/user/{name}")
+    @GetMapping("/user/{id}")
+    public Optional<User> findById(@PathVariable("id") long id){
+        return repository.findById(id);
+    }
+
+    @GetMapping("/users/{name}")
     public List<User> findByName(@PathVariable("name") String name){
         return repository.findByName(name);
     }
 
-    @PostMapping ("/user")
+    @PostMapping("/user")
+    //(value="/user", produces = "application/json", consumes = "application/json")
     public User createUser(@RequestBody User user){
         return repository.save(user);
     }
